@@ -15,7 +15,10 @@ sshd:
     - user: root
     - group: root
     - template: jinja
-{% else %}
+{% endif %}
+
+{% if not grains['nodename'] == 'nuc*' %}
+/etc/ssh/sshd_config:
   file.managed:
     - source: salt://server_lite/templates/sshd_config.j2
     - mode: 644
