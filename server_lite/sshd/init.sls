@@ -16,7 +16,6 @@ sshd:
     - group: root
     - template: jinja
 {% else %}
-/etc/ssh/sshd_config:
   file.managed:
     - source: salt://server_lite/templates/sshd_config.j2
     - mode: 644
