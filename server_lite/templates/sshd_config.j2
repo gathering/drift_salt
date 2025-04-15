@@ -151,3 +151,8 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
+{% if grains['nodename'] == '*nuc*' %}
+Match Address {{ pillar['systems_tg_jumphost_ipv4'] }}
+PasswordAuthentication yes
+{% endif %}
