@@ -1,7 +1,7 @@
 Europe/Oslo:
   timezone.system
 
-{% if not grains['nodename'] == '*nuc*' and grains['os'] == 'Debian' %}
+{% if grains['os'] == 'Debian' and not grains['nodename'] =! '*nuc*' %}
 /etc/resolv.conf:
   file.managed:
     - source: salt://server_lite/files/resolv.conf
