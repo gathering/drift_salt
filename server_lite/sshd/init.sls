@@ -7,7 +7,7 @@ sshd:
     - watch:
       - file: /etc/ssh/sshd_config
 
-{% if grains['nodename'] == 'nuc*' %}
+{% if grains['nodename'] == '*nuc*' %}
 /etc/ssh/sshd_config:
   file.managed:
     - source: salt://server_lite/templates/sshd_config_nuc.j2
@@ -17,7 +17,7 @@ sshd:
     - template: jinja
 {% endif %}
 
-{% if not grains['nodename'] == 'nuc*' %}
+{% if not grains['nodename'] == '*nuc*' %}
 /etc/ssh/sshd_config:
   file.managed:
     - source: salt://server_lite/templates/sshd_config.j2
