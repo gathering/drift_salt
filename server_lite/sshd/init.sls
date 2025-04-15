@@ -8,14 +8,19 @@ sshd:
       - file: /etc/ssh/sshd_config
 
 {% if grains['nodename'] == '*nuc*' %}
-/etc/ssh/sshd_config:
+sshd_config_nuc:
   file.managed:
-    - source: salt://server_lite/templates/sshd_config_nuc.j2
-    - mode: 644
     - user: root
     - group: root
+    - mode: 644
     - template: jinja
-{% elif not grains['nodename'] != '*nuc*'  %}
+    - name:
+      - salt_master_conf
+      - source: salt://server_lite/templates/sshd_config_nuc.j2
+{% endif %}
+
+
+{% if not grains['nodename'] != '*nuc*' %}
 /etc/ssh/sshd_config:
   file.managed:
     - source: salt://server_lite/templates/sshd_config.j2
