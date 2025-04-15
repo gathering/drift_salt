@@ -23,7 +23,7 @@ salt_gpg_bookworm:
     - group: root
     - mode: 644
 
-{% if grains['osrelease'] == '12' and grains['osrelease'] == '11' %}
+{% if grains['osrelease'] == '12' or grains['osrelease'] == '11' %}
 salt_apt_config:
   file.managed:
     - name: /etc/apt/sources.list.d/salt.sources
