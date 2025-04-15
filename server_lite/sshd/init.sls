@@ -15,8 +15,6 @@ sshd:
     - user: root
     - group: root
     - template: jinja
-{% endif %}
-
 {% if grains['nodename'] != '*nuc*' %}
 /etc/ssh/sshd_config:
   file.managed:
