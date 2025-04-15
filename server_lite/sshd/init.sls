@@ -14,3 +14,13 @@ sshd:
     - user: root
     - group: root
     - template: jinja
+
+{% if salt['file.file_exists']('/etc/sssd/sssd.conf') %}
+/etc/ssh/sshd_config.d/04-ipa.conf:
+  file.managed:
+    - source: salt://server_lite/templates/04-ipa.conf.j2
+    - mode: 644
+    - user: root
+    - group: root
+    - template: jinja
+{% endif %}

@@ -1,0 +1,9 @@
+# IPA-related configuration changes to sshd_config
+
+PubkeyAuthentication yes
+KerberosAuthentication no
+GSSAPIAuthentication yes
+UsePAM yes
+ChallengeResponseAuthentication yes
+AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
+AuthorizedKeysCommandUser nobody
